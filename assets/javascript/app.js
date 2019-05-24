@@ -1,138 +1,213 @@
 const myQuestions = [
-    {
-      question: "What team won the very first NBA game?",
-      answers: {
-        a: "Chicago Stags",
-        b: "Philadelphia Warriors",
-        c: "New York Knicks",
-        d: "Toronto Huskies"
-      },
-      correctAnswer: "c"
+  {
+    question: "1. What team won the very first NBA game?",
+    answers: {
+      a: "Chicago Stags",
+      b: "Philadelphia Warriors",
+      c: "New York Knicks",
+      d: "Toronto Huskies"
     },
-    {
-      question: "Who was the first player in NBA history to be elected league MVP by a unanimous vote?",
-      answers: {
-        a: "Stephen Curry",
-        b: "Michael Jordan",
-        c: "Lebron James",
-        d: "Kobe Bryant"
-      },
-      correctAnswer: "a"
+    correctAnswer: "c"
+  },
+  {
+    question: "2. Who was the first player in NBA history to be elected league MVP by a unanimous vote?",
+    answers: {
+      a: "Stephen Curry",
+      b: "Michael Jordan",
+      c: "Lebron James",
+      d: "Kobe Bryant"
     },
-    {
-      question: "Who was the youngest player to score 10,000 points in the NBA?",
-      answers: {
-        a: "Wilt Chamberlain",
-        b: "Kareem Abdul-Jabbar",
-        c: "Michael Jordan",
-        d: "Lebron James"
-      },
-      correctAnswer: "d"
+    correctAnswer: "a"
+  },
+  {
+    question: "3. Who was the youngest player to score 10,000 points in the NBA?",
+    answers: {
+      a: "Wilt Chamberlain",
+      b: "Kareem Abdul-Jabbar",
+      c: "Michael Jordan",
+      d: "Lebron James"
     },
-    {
-    question: "What team owns the longest winning streak in NBA history?",
-      answers: {
-        a: "Los Angeles Lakers",
-        b: "Chicago Bulls",
-        c: "New York Knicks",
-        d: "Miami Heat"
-      },
-      correctAnswer: "a"
+    correctAnswer: "d"
+  },
+  {
+    question: "4. What team owns the longest winning streak in NBA history?",
+    answers: {
+      a: "Los Angeles Lakers",
+      b: "Chicago Bulls",
+      c: "New York Knicks",
+      d: "Miami Heat"
     },
-    {
-      question: "What NBA player has won the most league MVPs?",
-        answers: {
-          a: "Michael Jordan",
-          b: "Kobe Bryant",
-          c: "Lebron James",
-          d: "Kareem Abdul-Jabbar"
-        },
-        correctAnswer: "d"
-      },
-      {
-        question: "Which NBA Team Has Won The Most Championships?",
-          answers: {
-            a: "Golden State Warriors",
-            b: "Boston Celtics",
-            c: "Los Angeles Lakers",
-            d: "Chicago Bulls"
-          },
-          correctAnswer: "b"
-        }
-  ];
+    correctAnswer: "a"
+  },
+  {
+    question: "5. What NBA player has won the most league MVPs?",
+    answers: {
+      a: "Michael Jordan",
+      b: "Kobe Bryant",
+      c: "Lebron James",
+      d: "Kareem Abdul-Jabbar"
+    },
+    correctAnswer: "d"
+  },
+  {
+    question: "6. Which NBA Team Has Won The Most Championships?",
+    answers: {
+      a: "Golden State Warriors",
+      b: "Boston Celtics",
+      c: "Los Angeles Lakers",
+      d: "Chicago Bulls"
+    },
+    correctAnswer: "b"
+  },
+  {
+    question: "7. How many points did LeBron James score in his first NBA game?",
+    answers: {
+      a: "21",
+      b: "14",
+      c: "25",
+      d: "42"
+    },
+    correctAnswer: "c"
+  },
+  {
+    question: "8. Which player holds the most NBA Championship titles?",
+    answers: {
+      a: "K.C. Jones",
+      b: "Sam Jones",
+      c: "Bill Russell",
+      d: "Tom Heinsohn"
+    },
+    correctAnswer: "c"
+  },
+  {
+    question: "9. Which NBA Coach holds the most Championship titles?",
+    answers: {
+      a: "Phil Jackson",
+      b: "Red Auerbach",
+      c: "John Kundla",
+      d: "Pat Riley"
+    },
+    correctAnswer: "a"
+  },
+  {
+    question: "10. Which NBA player has the most blocks in history?",
+    answers: {
+      a: "Shaquille O'Neal",
+      b: "Hakeem Olajuwon",
+      c: "Tim Duncan",
+      d: "Kevin Garnett"
+    },
+    correctAnswer: "b"
+  },
 
-const quizContainer = document.getElementById('quiz');
-const resultsContainer = document.getElementById('results');
-const submitButton = document.getElementById('submit');
+];
 
-function showResults(){}
+// my global variables
+var rightA = 0;
+var wrongA = 0;
+var noA = 0;
+var intervalTimer;
 
-// display quiz right away
-buildQuiz();
 
-// on submit, show results
-submitButton.addEventListener('click', showResults);
+// showing the questions
 
-function buildQuiz(){
-    // we'll need a place to store the HTML output
-    const output = [];
-  
-    // for each question...
-    myQuestions.forEach(
-      (currentQuestion, questionNumber) => {
-  
-        // we'll want to store the list of answer choices
-        const answers = [];
-  
-        // and for each available answer...
-        for(letter in currentQuestion.answers){
-  
-          // ...add an HTML radio button
-          answers.push(
-            `<label>
-              <input type="radio" name="question${questionNumber}" value="${letter}">
-              ${letter} :
-              ${currentQuestion.answers[letter]}
-            </label>`
-          );
-        }
-  
-        // add this question and its answers to the output
-        output.push(
-          `<div class="question"> ${currentQuestion.question} </div>
-          <div class="answers"> ${answers.join('')} </div>`
-        );
-      }
-    );
-  
-    // finally combine our output list into one string of HTML and put it on the page
-    quizContainer.innerHTML = output.join('');
+function showquestions() {
+
+  for (i = 0; i < myQuestions.length; i++) {
+
+    $("#quiz").append("<h3>" + myQuestions[i].question + "</h3>")
+
+    for (key in myQuestions[i].answers) {
+      $("#quiz").append("<input type='radio' name=" + i + " value=" + key + ">" + myQuestions[i].answers[key] + "</>")
+    }
+
   }
 
-  myQuestions.forEach( (currentQuestion, questionNumber) => {
-    // here goes the code we want to run for each question
-  });
+  $("#submit").on("click", function () {
+    var input = $("#quiz").children("input:checked")
+    console.log(input)
+    for (index = 0; index < input.length; index++) {
+      var q = $(input[index]).attr("name")
+      var userA = $(input[index]).attr("value")
+      console.log(q, userA)
 
-  // we'll want to store the list of answer choices
-const answers = [];
+      if (userA === myQuestions[q].correctAnswer) {
+        rightA++;
+      }
+      else {
+        wrongA++;
 
-// and for each available answer...
-for(letter in currentQuestion.answers){
+      }
 
-  // ...add an html radio button
-  answers.push(
-    `<label>
-      <input type="radio" name="question${questionNumber}" value="${letter}">
-      ${letter} :
-      ${currentQuestion.answers[letter]}
-    </label>`
-  );
+
+    }
+    var noA = myQuestions.length - rightA - wrongA;
+
+    showresults()
+
+  })
+
 }
 
-// add this question and its answers to the output
-output.push(
-  `<div class="question"> ${currentQuestion.question} </div>
-  <div class="answers"> ${answers.join('')} </div>`
-);
+// show the results
+function showresults() {
+  $("#quiz").empty();
+  $("#results").append("<p>" + "-" + rightA + "-" + wrongA + "-" + noA + "</p>")
 
-quizContainer.innerHTML = output.join('');
+}
+
+/* I copied and heavily tweaked this countdown code from: https://codepen.io/mattlitzinger/pen/ysowF */
+
+var target_date = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
+var seconds; // variables for time units
+
+var countdown = document.getElementById("tiles"); // get tag element
+
+getCountdown();
+
+setInterval(function () { getCountdown(); }, 1000);
+
+function getCountdown() {
+
+  // find the amount of "seconds" between now and target
+  var current_date = new Date().getTime();
+  var seconds_left = (target_date - current_date) / 1000;
+
+  days = pad(parseInt(seconds_left / 86400));
+  seconds_left = seconds_left % 86400;
+
+  hours = pad(parseInt(seconds_left / 3600));
+  seconds_left = seconds_left % 3600;
+
+  minutes = pad(parseInt(seconds_left / 30));
+  seconds = pad(parseInt(seconds_left % 30));
+
+  // format countdown string + set tag value
+  countdown.innerHTML = "<span>" + seconds + "</span>";
+}
+
+function pad(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+
+function countdown() {
+  // decrease the counterTimer
+  // show in the screen the counterTimer
+  if (counterTimer === 0) {
+    clearInterval(intervalTimer)
+    // timeout 
+    // showresults
+
+  }
+
+}
+
+// function startGame() {
+//   intervalTimer = setInterval(countdown, 1000)
+//   showquestions()
+// }
+
+startGame()
+
+
+

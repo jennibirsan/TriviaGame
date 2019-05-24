@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,43 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <!-- Bootstrap File -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
 
 </head>
+
 <body>
-    <h1>HEY IT'S GAME TIME</h1>
-        <script src="./assets/javascript/app.js"></script>
 
+
+
+    <div class="jumbotron">
+        <h1 class="display-4">Let's Ball</h1>
+        <p class="lead">Test your skills. Hurry</p>
+        <!-- <p class="timer">WHERE MY TIMER WILL BE
+        </p> -->
+        <div id="countdown">
+                <div id='tiles'></div>
+                <div class="labels">
+                  <li>Secs Left</li>
+                </div>
+              </div>
+              <br>
+        <hr class="my-4">
         <div id="quiz"></div>
-        <!-- <button id="submit" class="btn btn-outline-primary">Score</button> -->
-        <a id="submit" type="button" class="btn btn-outline-primary">Score</a>
+        <p class="lead">
+                <br>
+                <br>
+            <a id="submit" class="btn btn-primary btn-lg" href="#" role="button">Score</a>
+        </p>
         <div id="results"></div>
+    </div>
 
+
+
+
+    <script src="./assets/javascript/app.js"></script>
 </body>
+
 </html>
