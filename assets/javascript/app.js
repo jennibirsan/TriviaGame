@@ -106,7 +106,7 @@ const myQuestions = [
 var rightA = 0;
 var wrongA = 0;
 var noA = 0;
-var intervalTimer;
+var seconds;
 
 
 // showing the questions
@@ -136,12 +136,9 @@ function showquestions() {
       }
       else {
         wrongA++;
-
       }
-
-
     }
-    var noA = myQuestions.length - rightA - wrongA;
+    noA = myQuestions.length - rightA - wrongA;
 
     showresults()
 
@@ -152,23 +149,22 @@ function showquestions() {
 // show the results
 function showresults() {
   $("#quiz").empty();
-  $("#results").append("<p>" + "-" + rightA + "-" + wrongA + "-" + noA + "</p>")
+  $("#results").append("<p>" + "Right Answers: <b> " + rightA + "</p>")
+  $("#results").append("<p>" + "Wrong Answers: <b> " + wrongA + "</p>")
+  $("#results").append("<p>" + "Unanswered: <b> " + noA + "</p>")
 
 }
 
 /* I copied and heavily tweaked this countdown code from: https://codepen.io/mattlitzinger/pen/ysowF */
 
+function startGame(){
 var target_date = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
-var seconds; // variables for time units
-
 var countdown = document.getElementById("tiles"); // get tag element
 
 getCountdown();
-
 setInterval(function () { getCountdown(); }, 1000);
-
+showquestions()
 function getCountdown() {
-
   // find the amount of "seconds" between now and target
   var current_date = new Date().getTime();
   var seconds_left = (target_date - current_date) / 1000;
@@ -189,25 +185,15 @@ function getCountdown() {
 function pad(n) {
   return (n < 10 ? '0' : '') + n;
 }
-
-function countdown() {
-  // decrease the counterTimer
-  // show in the screen the counterTimer
-  if (counterTimer === 0) {
-    clearInterval(intervalTimer)
-    // timeout 
-    // showresults
-
-  }
-
+// function getCountdown() {
+//   // decrease the counterTimer
+//   // show in the screen the counterTimer
+//   if (getCountdown === 0) {
+//     clearInterval(seconds).showresults
+//     // timeout 
+//     // showresults
+//   }
+// }
 }
 
-// function startGame() {
-//   intervalTimer = setInterval(countdown, 1000)
-//   showquestions()
-// }
-
 startGame()
-
-
-
