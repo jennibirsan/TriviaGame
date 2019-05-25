@@ -115,10 +115,10 @@ function showquestions() {
 
   for (i = 0; i < myQuestions.length; i++) {
 
-    $("#quiz").append("<h3>" + myQuestions[i].question + "</h3>")
+    $("#quiz").append("<h5>" + myQuestions[i].question + "</h5>")
 
     for (key in myQuestions[i].answers) {
-      $("#quiz").append("<input type='radio' name=" + i + " value=" + key + ">" + myQuestions[i].answers[key] + "</>")
+      $("#quiz").append("<input type='checkbox' name=" + i +  " value=" + key + ">" + myQuestions[i].answers[key] + "</>")
     }
 
   }
@@ -140,7 +140,7 @@ function showquestions() {
     }
     noA = myQuestions.length - rightA - wrongA;
 
-    showresults()
+    showresults();
 
   })
 
@@ -155,36 +155,37 @@ function showresults() {
 
 }
 
-/* I copied and heavily tweaked this countdown code from: https://codepen.io/mattlitzinger/pen/ysowF */
+/* I copied and heavily tweaked this countdown code below from: https://codepen.io/mattlitzinger/pen/ysowF */
 
 function startGame(){
-var target_date = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
-var countdown = document.getElementById("tiles"); // get tag element
-
-getCountdown();
-setInterval(function () { getCountdown(); }, 1000);
+var timeLeft = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
+var elem = document.getElementById("tiles"); // get tag element
+var timerId = setInterval(countdown, 1000);
+function countdown() {
+        if (timeLeft == 0) {
+          clearTimeout(timerId);
+          doSomething();
+        } else {
+          elem.innerHTML = timeLeft;
+          timeLeft--;
+        }
+      }
 showquestions()
-function getCountdown() {
+function countdown() {
   // find the amount of "seconds" between now and target
   var current_date = new Date().getTime();
-  var seconds_left = (target_date - current_date) / 1000;
-
-  days = pad(parseInt(seconds_left / 86400));
-  seconds_left = seconds_left % 86400;
-
-  hours = pad(parseInt(seconds_left / 3600));
-  seconds_left = seconds_left % 3600;
-
-  minutes = pad(parseInt(seconds_left / 30));
+  var seconds_left = (timeLeft - current_date) / 1000;
   seconds = pad(parseInt(seconds_left % 30));
-
   // format countdown string + set tag value
-  countdown.innerHTML = "<span>" + seconds + "</span>";
+  elem.innerHTML = "<span>" + seconds + "</span>";
+  
 }
-
 function pad(n) {
   return (n < 10 ? '0' : '') + n;
 }
+}
+/* I copied and heavily tweaked this countdown above code from: https://codepen.io/mattlitzinger/pen/ysowF */
+
 // function getCountdown() {
 //   // decrease the counterTimer
 //   // show in the screen the counterTimer
@@ -194,6 +195,6 @@ function pad(n) {
 //     // showresults
 //   }
 // }
-}
+// }
 
 startGame()
