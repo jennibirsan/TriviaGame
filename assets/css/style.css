@@ -4,9 +4,13 @@
   }
 
 body{
-    background: url("../images/ball2.jpg");
+    background: url("../images/oj.jpg");
   }
 
+#bball {
+  background: url("../images/ball2.jpg");
+
+}
   .jumbotron {
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -80,4 +84,12 @@ body{
     text-transform: uppercase;
     display: inline-block;
     padding-top: 15px;
+  }
+
+  #quiz {
+  line-height: 5; 
+  }
+
+  #restart {
+    display: none;
   }
