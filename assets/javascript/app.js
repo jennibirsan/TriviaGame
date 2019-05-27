@@ -106,7 +106,7 @@ const myQuestions = [
 var rightA = 0;
 var wrongA = 0;
 var noA = 0;
-var seconds=30;
+var seconds = 30;
 var timerId;
 var elem;
 
@@ -119,7 +119,7 @@ function showquestions() {
   for (i = 0; i < myQuestions.length; i++) {
 
     $("#quiz").append("<h5>" + myQuestions[i].question + "</h5>")
-    
+
     for (key in myQuestions[i].answers) {
       $("#quiz").append("<input type='radio' name=" + i + " value=" + key + ">" + '&nbsp &nbsp' + myQuestions[i].answers[key] + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "</>")
     }
@@ -127,7 +127,6 @@ function showquestions() {
   }
 
   $("#submit").on("click", function () {
-    // clear the timer
     clearInterval(timerId);
     var input = $("#quiz").children("input:checked")
     console.log(input)
@@ -161,50 +160,19 @@ function showresults() {
   $("#submit").hide();
 }
 
-/* I copied and heavily tweaked this countdown code below from: https://codepen.io/mattlitzinger/pen/ysowF */
-
 function startGame() {
-  //var timeLeft = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
   elem = document.getElementById("tiles"); // get tag element
   timerId = setInterval(countdown, 1000);
-
   showquestions()
-
 }
-
 function countdown() {
   seconds--
-
-  if (seconds === 0){
+  if (seconds === 0) {
     clearInterval(timerId);
     showresults()
   }
-
-  //seconds_left = seconds
   console.log(seconds)
-  // find the amount of "seconds" between now and target
-  // var current_date = new Date().getTime();
-  // var seconds_left = (timeLeft - current_date) / 1000;
-  //var seconds1 = pad(parseInt(seconds_left % 30));
-
-  //console.log(seconds1)
-  // format countdown string + set tag value
   elem.innerHTML = "<span>" + seconds + "</span>";
 
 }
-// function pad(n) {
-//   return (n < 10 ? '0' : '') + n;
-// }
-// function countdown() {
-//   if (timeLeft == 0) {
-//     clearTimeout(timerId);
-//   } else {
-//     elem.innerHTML = timeLeft;
-//     timeLeft===-1;
-//     showresults();
-//   }
-// }
-/* I copied and heavily tweaked this countdown above code from: https://codepen.io/mattlitzinger/pen/ysowF */
-
-
 startGame()
