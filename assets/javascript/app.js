@@ -106,7 +106,10 @@ const myQuestions = [
 var rightA = 0;
 var wrongA = 0;
 var noA = 0;
-var seconds;
+var seconds=30;
+var timerId;
+var elem;
+
 
 
 // showing the questions
@@ -124,6 +127,8 @@ function showquestions() {
   }
 
   $("#submit").on("click", function () {
+    // clear the timer
+    clearInterval(timerId);
     var input = $("#quiz").children("input:checked")
     console.log(input)
     for (index = 0; index < input.length; index++) {
@@ -152,39 +157,53 @@ function showresults() {
   $("#results").append("<p>" + "Right Answers: <b> " + rightA + "</p>")
   $("#results").append("<p>" + "Wrong Answers: <b> " + wrongA + "</p>")
   $("#results").append("<p>" + "Unanswered: <b> " + noA + "</p>")
-$("#restart").show();
-$("#submit").hide();
+  $("#restart").show();
+  $("#submit").hide();
 }
 
 /* I copied and heavily tweaked this countdown code below from: https://codepen.io/mattlitzinger/pen/ysowF */
 
 function startGame() {
-  var timeLeft = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
-  var elem = document.getElementById("tiles"); // get tag element
-  var timerId = setInterval(countdown, 1000);
-  function countdown() {
-    if (timeLeft == 0) {
-      clearTimeout(timerId);
-    } else {
-      elem.innerHTML = timeLeft;
-      timeLeft===-1;
-      showresults();
-    }
-  }
-  showquestions()
-  function countdown() {
-    // find the amount of "seconds" between now and target
-    var current_date = new Date().getTime();
-    var seconds_left = (timeLeft - current_date) / 1000;
-    seconds = pad(parseInt(seconds_left % 30));
-    // format countdown string + set tag value
-    elem.innerHTML = "<span>" + seconds + "</span>";
+  //var timeLeft = new Date().getTime() + (1000 * 3600 * 48); // set the countdown date
+  elem = document.getElementById("tiles"); // get tag element
+  timerId = setInterval(countdown, 1000);
 
-  }
-  function pad(n) {
-    return (n < 10 ? '0' : '') + n;
-  }
+  showquestions()
+
 }
+
+function countdown() {
+  seconds--
+
+  if (seconds === 0){
+    clearInterval(timerId);
+    showresults()
+  }
+
+  //seconds_left = seconds
+  console.log(seconds)
+  // find the amount of "seconds" between now and target
+  // var current_date = new Date().getTime();
+  // var seconds_left = (timeLeft - current_date) / 1000;
+  //var seconds1 = pad(parseInt(seconds_left % 30));
+
+  //console.log(seconds1)
+  // format countdown string + set tag value
+  elem.innerHTML = "<span>" + seconds + "</span>";
+
+}
+// function pad(n) {
+//   return (n < 10 ? '0' : '') + n;
+// }
+// function countdown() {
+//   if (timeLeft == 0) {
+//     clearTimeout(timerId);
+//   } else {
+//     elem.innerHTML = timeLeft;
+//     timeLeft===-1;
+//     showresults();
+//   }
+// }
 /* I copied and heavily tweaked this countdown above code from: https://codepen.io/mattlitzinger/pen/ysowF */
 
 
